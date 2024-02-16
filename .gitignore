@@ -73,3 +73,7 @@ crashlytics-build.properties
 
 # JetBrains Rider
 .idea/
+
+# Misc
+.DS_Store
+
