@@ -71,8 +71,11 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# JetBrains Rider
+### JetBrains Rider ###
 .idea/
+
+### VisualStudio Code ###
+.vscode/
 
 # Misc
 .DS_Store
