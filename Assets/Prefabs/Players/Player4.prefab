@@ -8,10 +8,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 686299190451288042, guid: 5d1c0acf0649946f8a86396cc5427425,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2898380325
+      objectReference: {fileID: 0}
     - target: {fileID: 1909452858543341128, guid: 5d1c0acf0649946f8a86396cc5427425,
         type: 3}
       propertyPath: m_Name
-      value: PlayerMasculine2
+      value: Player4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115763469120611000, guid: 5d1c0acf0649946f8a86396cc5427425,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7281042948935784372, guid: 5d1c0acf0649946f8a86396cc5427425,
         type: 3}

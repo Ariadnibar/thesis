@@ -58,10 +58,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4477748863057472172, guid: 0995ca220aee34dadb6597f7449b056d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5087889673033217628, guid: 0995ca220aee34dadb6597f7449b056d,
         type: 3}
       propertyPath: m_Name
-      value: PlayerFeminine1
+      value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 5769080691263921980, guid: 0995ca220aee34dadb6597f7449b056d,
         type: 3}
@@ -72,6 +77,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152572997945081854, guid: 0995ca220aee34dadb6597f7449b056d,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3429821273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
