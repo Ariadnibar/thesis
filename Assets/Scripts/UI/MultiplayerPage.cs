@@ -44,6 +44,8 @@ namespace UI
             try
             {
                 await RelayManager.Singleton.JoinHost(codeInputField.text);
+
+                ClearData();
             }
             catch (RelayServiceException e)
             {
@@ -54,6 +56,12 @@ namespace UI
                     _ => "Something went wrong"
                 };
             }
+        }
+        
+        private void ClearData()
+        {
+            codeInputField.text = "";
+            feedbackText.text = "";
         }
     }
 }
