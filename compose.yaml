@@ -1,0 +1,15 @@
+name: thesis-backend
+
+services:
+  postgres:
+    container_name: thesis-postgres
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: thesis_db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.docker/postgres-data:/var/lib/postgresql/data
