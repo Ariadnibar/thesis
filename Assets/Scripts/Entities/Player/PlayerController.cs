@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using Cinemachine;
+using Interfaces;
 
-namespace Player
+namespace Entities.Player
 {
     [RequireComponent(typeof(CharacterController), typeof(PlayerInput), typeof(Animator))]
     public class PlayerController : NetworkBehaviour
@@ -79,6 +80,11 @@ namespace Player
         private Vector2 _look = Vector2.zero;
         private bool _jump;
         private bool _sprint;
+        private bool _interact;
+        
+        // Interactions
+        
+        public IInteractive Interactive { get; set; }
         
         // === Unity Events ===
         
@@ -105,6 +111,7 @@ namespace Player
             Gravity();
             CheckGrounded();
             Move();
+            Interact();
         }
 
         private void LateUpdate()
@@ -243,6 +250,15 @@ namespace Player
             _animator.SetFloat(_animationIdMotionSpeed, _animationMotionSpeed.Value);
         }
 
+        private void Interact()
+        {
+            if (!IsOwner || !_interact) return;
+            
+            Interactive?.Interact();
+            
+            _interact = false;
+        }
+
         private void RotateCamera()
         {
             if (_look.sqrMagnitude >= 0.01f)
@@ -296,6 +312,13 @@ namespace Player
             if (!IsOwner || _move == Vector2.zero) return;
             
             _sprint = value.isPressed;
+        }
+        
+        private void OnInteract(InputValue value)
+        {
+            if (!IsOwner) return;
+            
+            _interact = value.isPressed;
         }
         
         // === Animation Callbacks ===
