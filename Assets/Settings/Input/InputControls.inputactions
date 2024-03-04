@@ -152,6 +152,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Chat",
+            "id": "d2d14435-3b6a-4743-83ee-0617f72f9fd9",
+            "actions": [
+                {
+                    "name": "SendMessage",
+                    "type": "Button",
+                    "id": "539ec6f4-c19e-431e-a7f5-637a2a03af37",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeaveChat",
+                    "type": "Button",
+                    "id": "42a9e799-f290-441b-81b7-2671d4e52763",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aef56cc5-3ebd-4d5d-a31f-e02c1af250f9",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SendMessage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5154e96-e639-4855-b5bb-9f74a3b02614",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeaveChat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

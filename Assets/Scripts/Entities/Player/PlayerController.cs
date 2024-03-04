@@ -73,7 +73,11 @@ namespace Entities.Player
             NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         
         private CharacterController _controller;
+        private PlayerInput _playerInput;
         private Animator _animator;
+        
+        private System.Action _onMessageSend;
+        private System.Action _onLeaveChat;
         
         // Input
         private Vector2 _move = Vector2.zero;
@@ -91,6 +95,7 @@ namespace Entities.Player
         private void Start()
         {
             _controller = GetComponent<CharacterController>();
+            _playerInput = GetComponent<PlayerInput>();
             _animator = GetComponent<Animator>();
             
             _jumpTimeoutDelta = jumpTimeout;
@@ -133,6 +138,18 @@ namespace Entities.Player
             audioListener.enabled = true;
             
             virtualCamera.Priority = 1;
+        }
+        
+        // === API ===
+
+        public void ToggleChatControls(bool enable, System.Action onMessageSend, System.Action onLeaveChat)
+        {
+            if (!IsOwner) return;
+            
+            _onMessageSend = onMessageSend;
+            _onLeaveChat = onLeaveChat;
+            
+            _playerInput.SwitchCurrentActionMap(enable ? "Chat" : "Player");
         }
         
         // === Helpers ===
@@ -319,6 +336,25 @@ namespace Entities.Player
             if (!IsOwner) return;
             
             _interact = value.isPressed;
+        }
+        
+        private void OnSendMessage(InputValue value)
+        {
+            if (!IsOwner) return;
+            
+            _onMessageSend?.Invoke();
+        }
+        
+        private void OnLeaveChat(InputValue value)
+        {
+            if (!IsOwner) return;
+            
+            _onLeaveChat?.Invoke();
+            
+            _playerInput.SwitchCurrentActionMap("Player");
+            
+            _onMessageSend = null;
+            _onLeaveChat = null;
         }
         
         // === Animation Callbacks ===
