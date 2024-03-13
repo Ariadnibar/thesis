@@ -169,10 +169,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7031060051666255587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -274.99945}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: -0.00015258789, y: -0.00030517578}
+  m_SizeDelta: {x: -23.111666, y: -10.194689}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6915829199219210334
 GameObject:
@@ -317,8 +317,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 550}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: 390, y: 550}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8684320273915771406
 CanvasRenderer:
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -438,7 +438,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881e70054422b46a5abe69cd2faa8087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prompt: Act as a random stranger in a chat room and reply to the questions. Don't
+    break character. Don't ever mention that you are an AI model.
   chatPanel: {fileID: 4527151905426623148}
+  scroll: {fileID: 6829200693672801813}
+  messageSentPrefab: {fileID: 7233125166137846039, guid: a764587438e3c4ef5a139a77ec31d988,
+    type: 3}
+  messageReceivedPrefab: {fileID: 5525718364428547713, guid: 76d16867b62cd48d688329e3fc1992ad,
+    type: 3}
   messageInput: {fileID: 6938611879531058963}
 --- !u!1001 &1906152060807897012
 PrefabInstance:

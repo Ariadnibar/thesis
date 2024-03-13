@@ -1,30 +1,84 @@
 using Entities.Player;
 using UnityEngine;
+using UnityEngine.UI;
+using Web;
 
 namespace Entities.NPCs
 {
     [RequireComponent(typeof(Collider))]
     public class NpcController : MonoBehaviour
     {
+        [Header("Configuration")]
+        [SerializeField] [TextArea(3, 10)] private string prompt =
+            "Act as a random stranger in a chat room and reply to the questions. Don't break character. Don't ever mention that you are an AI model.";
+        
         [Header("References")]
         [SerializeField] private GameObject chatPanel;
+        [SerializeField] private ScrollRect scroll;
+        [SerializeField] private RectTransform messageSentPrefab;
+        [SerializeField] private RectTransform messageReceivedPrefab;
         [SerializeField] private TMPro.TMP_InputField messageInput;
-
-        private void Awake()
-        {
-            messageInput.onFocusSelectAll = true;
-        }
         
-        private void OnMessageSend()
+        private bool _firstMessage = true;
+        private float _height;
+
+        private async void OnMessageSend()
         {
-            Debug.Log("Message sent: " + messageInput.text);
+            var message = messageInput.text;
             
             messageInput.text = "";
+            AppendMessage(message, true);
+            
+            SendMessageRequestBody body;
+
+            if (_firstMessage)
+            {
+                body = new SendMessageRequestBody
+                {
+                    context = prompt,
+                    content = message
+                };
+            }
+            else
+            {
+                body = new SendMessageRequestBody
+                {
+                    content = message
+                };
+            }
+
+            var res = await OpenAIService.SendMessage(body);
+
+            if (!res.Success)
+            {
+                Debug.LogError(res.Message);
+                
+                AppendMessage("An error occurred while sending the message", false);
+                
+                return;
+            }
+            
+            if (_firstMessage) _firstMessage = false;
+            
+            AppendMessage(res.Data.message, false);
         }
         
         private void OnLeaveChat()
         {
             chatPanel.SetActive(false);
+        }
+        
+        private void AppendMessage(string message, bool userMessage)
+        {
+            scroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0);
+
+            var item = Instantiate(userMessage ? messageSentPrefab : messageReceivedPrefab, scroll.content);
+            item.GetChild(0).GetChild(0).GetComponent<TMPro.TMP_Text>().text = message;
+            item.anchoredPosition = new Vector2(0, -_height);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(item);
+            _height += item.sizeDelta.y;
+            scroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _height);
+            scroll.verticalNormalizedPosition = 0;
         }
         
         private void OnTriggerEnter(Collider other)
