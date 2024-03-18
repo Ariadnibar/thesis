@@ -85,9 +85,12 @@ namespace Entities.Player
         private bool _jump;
         private bool _sprint;
         private bool _interact;
+        private bool _interactLeft;
+        private bool _interactRight;
         
         // Interactions
         public IInteractive Interactive { get; set; }
+        public IInteractiveLeftRight InteractiveLeftRight { get; set; }
         
         // === Unity Events ===
         
@@ -115,7 +118,10 @@ namespace Entities.Player
             Gravity();
             CheckGrounded();
             Move();
+            
             Interact();
+            InteractLeft();
+            InteractRight();
         }
 
         private void LateUpdate()
@@ -275,6 +281,24 @@ namespace Entities.Player
             _interact = false;
         }
 
+        private void InteractLeft()
+        {
+            if (!IsOwner || !_interactLeft) return;
+            
+            InteractiveLeftRight?.InteractLeft();
+            
+            _interactLeft = false;
+        }
+        
+        private void InteractRight()
+        {
+            if (!IsOwner || !_interactRight) return;
+            
+            InteractiveLeftRight?.InteractRight();
+            
+            _interactRight = false;
+        }
+
         private void RotateCamera()
         {
             if (_look.sqrMagnitude >= 0.01f)
@@ -335,6 +359,20 @@ namespace Entities.Player
             if (!IsOwner) return;
             
             _interact = value.isPressed;
+        }
+        
+        private void OnInteractLeft(InputValue value)
+        {
+            if (!IsOwner) return;
+            
+            _interactLeft = value.isPressed;
+        }
+        
+        private void OnInteractRight(InputValue value)
+        {
+            if (!IsOwner) return;
+            
+            _interactRight = value.isPressed;
         }
         
         private void OnSendMessage(InputValue value)
