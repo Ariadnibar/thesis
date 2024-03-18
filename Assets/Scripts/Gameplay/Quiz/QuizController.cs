@@ -118,8 +118,8 @@ namespace Gameplay.Quiz
             // Disable buttons
             foreach (Transform child in buttonsParent.transform)
                 child.GetComponent<QuizButtonController>().SetButtonInteractable(false);
-            
-            _score += isCorrect ? config.SuccessfulAnswerPoints : config.WrongAnswerPoints;
+
+            _score = Mathf.Max(0, _score + (isCorrect ? config.SuccessfulAnswerPoints : config.WrongAnswerPoints));
             
             // Color answers
             // var answers = "";
