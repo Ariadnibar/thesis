@@ -23,17 +23,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3861049359784930083}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5489479779687018171}
-  m_Father: {fileID: 8537613377782891663}
+  m_Father: {fileID: 6394656361792617238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 70}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4527151905426623148
@@ -49,12 +49,12 @@ GameObject:
   - component: {fileID: 9007384812419670224}
   - component: {fileID: 8487833781922066122}
   m_Layer: 7
-  m_Name: Chat
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8537613377782891663
 RectTransform:
   m_ObjectHideFlags: 0
@@ -67,8 +67,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1772541921321477632}
-  - {fileID: 2146556155355786275}
+  - {fileID: 6394656361792617238}
   m_Father: {fileID: 5675276593159386829}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -169,11 +168,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7031060051666255587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00015258789, y: -0.00030517578}
-  m_SizeDelta: {x: -23.111666, y: -10.194689}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 975}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &6915829199219210334
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,18 +199,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6915829199219210334}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7031060051666255587}
-  m_Father: {fileID: 8537613377782891663}
+  m_Father: {fileID: 6394656361792617238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -740, y: -190}
-  m_SizeDelta: {x: -1520, y: -420}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6990518830812816736
 CanvasRenderer:
@@ -241,7 +240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 370b29ba4af574c0388c87485e2ffa92, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -281,6 +280,43 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &7041226863955421027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6394656361792617238}
+  m_Layer: 7
+  m_Name: Chat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &6394656361792617238
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041226863955421027}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1772541921321477632}
+  - {fileID: 2146556155355786275}
+  m_Father: {fileID: 8537613377782891663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 600, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &7268812385601380121
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,8 +353,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: 390, y: 550}
+  m_AnchoredPosition: {x: 0, y: -35}
+  m_SizeDelta: {x: 590, y: 945}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8684320273915771406
 CanvasRenderer:
@@ -341,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
+  m_Color: {r: 0.101960786, g: 0.1254902, b: 0.17254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -440,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prompt: Act as a random stranger in a chat room and reply to the questions. Don't
     break character. Don't ever mention that you are an AI model.
-  chatPanel: {fileID: 4527151905426623148}
+  chatPanel: {fileID: 7041226863955421027}
   scroll: {fileID: 6829200693672801813}
   messageSentPrefab: {fileID: 7233125166137846039, guid: a764587438e3c4ef5a139a77ec31d988,
     type: 3}
@@ -508,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}
@@ -518,7 +554,7 @@ PrefabInstance:
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}
@@ -528,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 370
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}
@@ -573,7 +609,7 @@ PrefabInstance:
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 220
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6222444119033803023, guid: 7924e79a1707d48de8d8bde722122cae,
         type: 3}

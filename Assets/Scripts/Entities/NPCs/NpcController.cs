@@ -85,10 +85,13 @@ namespace Entities.NPCs
         {
             if (!other.CompareTag("Player")) return;
             
+            var playerController = other.GetComponent<PlayerController>();
+            if (!playerController || !playerController.IsOwner) return;
+            
             chatPanel.SetActive(true);
             
             // Disable the player's movement
-            other.GetComponent<PlayerController>().ToggleChatControls(true, OnMessageSend, OnLeaveChat);
+            playerController.ToggleChatControls(true, OnMessageSend, OnLeaveChat);
             
             // Focus the input field
             messageInput.Select();

@@ -87,7 +87,6 @@ namespace Entities.Player
         private bool _interact;
         
         // Interactions
-        
         public IInteractive Interactive { get; set; }
         
         // === Unity Events ===
