@@ -1,4 +1,5 @@
 using UnityEngine;
+using Web;
 
 namespace Gameplay.Quiz
 {
@@ -9,15 +10,16 @@ namespace Gameplay.Quiz
         [SerializeField] private GameObject buttonNormal;
         [SerializeField] private GameObject buttonSelected;
         
-        private System.Action<bool> _onInteract;
+        private System.Action<GetQuizSuccessResponseAnswer> _onInteract;
         
-        private int _answerIndex;
-        private bool _isCorrect;
+        private GetQuizSuccessResponseAnswer _answer;
+        
         private bool _isDisabled;
-        
-        public void Initialize(bool isCorrect, System.Action<bool> onInteract)
+
+        public void Initialize(GetQuizSuccessResponseAnswer answer,
+            System.Action<GetQuizSuccessResponseAnswer> onInteract)
         {
-            _isCorrect = isCorrect;
+            _answer = answer;
             _onInteract = onInteract;
         }
 
@@ -25,7 +27,7 @@ namespace Gameplay.Quiz
         {
             if (_isDisabled) return;
             
-            _onInteract?.Invoke(_isCorrect);
+            _onInteract?.Invoke(_answer);
         }
         
         public void SetButtonInteractable(bool interactable)

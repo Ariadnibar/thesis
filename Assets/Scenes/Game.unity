@@ -397,7 +397,7 @@ PrefabInstance:
     - target: {fileID: 413446077376511492, guid: bd5b1a1f422371e4897aa45793e9da4b,
         type: 3}
       propertyPath: quizId
-      value: d1c3d668-a889-4b84-889f-a83ebbad3b72
+      value: 9bfa3cea-0c70-4c55-9092-fd5cf025b930
       objectReference: {fileID: 0}
     - target: {fileID: 7792659022867412892, guid: bd5b1a1f422371e4897aa45793e9da4b,
         type: 3}

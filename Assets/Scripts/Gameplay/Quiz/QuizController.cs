@@ -109,17 +109,22 @@ namespace Gameplay.Quiz
                 var position = buttonsStartPoint.position + (baseSpacing * (i + 1));
                 var button = Instantiate(buttonsPrefab, position, Quaternion.identity, buttonsParent.transform);
                 button.GetComponent<QuizButtonController>()
-                    .Initialize(_currentQuestion.answers[i].isCorrect, OnButtonInteract);
+                    .Initialize(_currentQuestion.answers[i], OnButtonInteract);
             }
         }
         
-        private void OnButtonInteract(bool isCorrect)
+        private void OnButtonInteract(GetQuizSuccessResponseAnswer answer)
         {
             // Disable buttons
             foreach (Transform child in buttonsParent.transform)
                 child.GetComponent<QuizButtonController>().SetButtonInteractable(false);
+            
+            var points = answer.isCorrect ? config.SuccessfulAnswerPoints : config.WrongAnswerPoints;
 
-            _score = Mathf.Max(0, _score + (isCorrect ? config.SuccessfulAnswerPoints : config.WrongAnswerPoints));
+            _score += points;
+
+            var body = new AnswerQuestionRequestBody { answerId = answer.id, points = points };
+            QuizzesService.AnswerQuestion(body);
             
             // Color answers
             // var answers = "";
@@ -151,6 +156,8 @@ namespace Gameplay.Quiz
             {
                 // Log to database
                 // await Core.Database.LogQuizScore(quizId, _score);
+                
+                _score = Mathf.Max(0, _score);
                 
                 Invoke(nameof(OnQuizComplete), config.QuizCompleteWaitTime);
             }
