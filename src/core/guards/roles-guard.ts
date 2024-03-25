@@ -3,6 +3,7 @@ import { Reflector } from '@nestjs/core';
 
 import { ROLES_KEY } from '~/core/decorators/roles.decorator';
 import { Role } from '~/core/enums/role.enum';
+import type { ICurrentUser } from '~/core/types/current-user.type';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -18,8 +19,8 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const { user } = context.switchToHttp().getRequest();
+    const { user } = context.switchToHttp().getRequest() as { user: ICurrentUser };
 
-    return requiredRoles.some((role) => user.role === role);
+    return requiredRoles.some((role) => user.user.role === role);
   }
 }

@@ -18,10 +18,18 @@ import { RolesGuard } from '~/core/guards/roles-guard';
 import { Roles } from '~/core/decorators/roles.decorator';
 import { Role } from '~/core/enums/role.enum';
 import { CreateQuizDto } from '~/modules/quizzes/dto/create-quiz.dto';
+import { CurrentUser } from '~/core/decorators/current-user.decorator';
+import type { ICurrentUser } from '~/core/types/current-user.type';
+import { AnswerQuestionDto } from '~/modules/quizzes/dto/answer-question.dto';
+import { LoggingService } from '~/modules/logging/logging.service';
+import { ActionLog } from '~/core/enums/action-log.enum';
 
 @Controller('/quizzes')
 export class QuizzesController {
-  constructor(private readonly quizzesService: QuizzesService) {}
+  constructor(
+    private readonly quizzesService: QuizzesService,
+    private readonly loggingService: LoggingService,
+  ) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.ADMIN)
@@ -117,5 +125,22 @@ export class QuizzesController {
     }
 
     return res;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('/answer-question')
+  public async answerQuestion(
+    @CurrentUser() { session, user }: ICurrentUser,
+    @Body() { answerId, points }: AnswerQuestionDto,
+  ) {
+    const sessionAnswer = await this.quizzesService.createSessionAnswer(session, answerId, points);
+
+    if (!sessionAnswer) throw new InternalServerErrorException('Failed to write session answer.');
+
+    await this.loggingService.log(session, {
+      type: ActionLog.QUIZ_ANSWER,
+      message: `User "${user.username}" answered question`,
+      sessionAnswerId: sessionAnswer.id,
+    });
   }
 }

@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from '~/modules/users/entities/user.entity';
 import { UsersService } from '~/modules/users/users.service';
 import { EncryptionService } from '~/modules/encryption/encryption.service';
+import type { IJwtPayload } from '~/core/types/jwt-payload.type';
 
 @Injectable()
 export class AuthService {
@@ -33,9 +34,13 @@ export class AuthService {
    * @returns An access token
    */
   public async signIn(user: User) {
-    const payload = { username: user.username, sub: user.id };
+    const session = await this.usersService.startSession(user.id);
 
-    return { access_token: this.jwtService.sign(payload) };
+    if (!session) return undefined;
+
+    const payload: IJwtPayload = { username: user.username, sub: user.id, session: session.id };
+
+    return { access_token: this.jwtService.sign(payload), sessionId: session.id };
   }
 
   /**
