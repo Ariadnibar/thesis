@@ -125,28 +125,6 @@ namespace Gameplay.Quiz
 
             var body = new AnswerQuestionRequestBody { answerId = answer.id, points = points };
             QuizzesService.AnswerQuestion(body);
-            
-            // Color answers
-            // var answers = "";
-            // foreach (var answer in _currentQuestion.answers)
-            // {
-            //     var color = answer.isCorrect ? "#00FF00" : "#FF0000";
-            //     answers += $"<color={color}>{answer.content}</color>\n\n";
-            // }
-            //
-            // for (var i = 0; i < _currentQuestion.answers.Length; i++)
-            // {
-            //     var answer = i == _currentQuestion.CorrectAnswerIndex
-            //         ? $"<color=#00FF00>{_currentQuestion.Answers[i]}</color>"
-            //         : $"<color=#FF0000>{_currentQuestion.Answers[i]}</color>";
-            //     
-            //     answers += $"{i + 1}. {answer}\n\n";
-            // }
-            // answersText.text = answers;
-            
-            // Log to database
-            // await Core.Database.LogQuizAnswer(quizId, _currentQuestionIndex, _currentQuestion.Question,
-            //     _currentQuestion.Answers[answerIndex], answerIndex == _currentQuestion.CorrectAnswerIndex);
 
             if (FindNextQuestion())
             {
@@ -154,9 +132,6 @@ namespace Gameplay.Quiz
             }
             else
             {
-                // Log to database
-                // await Core.Database.LogQuizScore(quizId, _score);
-                
                 _score = Mathf.Max(0, _score);
                 
                 Invoke(nameof(OnQuizComplete), config.QuizCompleteWaitTime);
@@ -214,6 +189,10 @@ namespace Gameplay.Quiz
             
             if (playerController.IsLocalPlayer)
                 virtualCamera.gameObject.SetActive(true);
+            
+            // Log to database
+            var body = new WriteQuizLogRequestBody { quizId = quizId };
+            LoggingService.WriteQuizStartLog(body);
         }
         
         private void OnTriggerExit(Collider other)
@@ -225,6 +204,10 @@ namespace Gameplay.Quiz
             
             if (playerController.IsLocalPlayer)
                 virtualCamera.gameObject.SetActive(false);
+            
+            // Log to database
+            var body = new WriteQuizLogRequestBody { quizId = quizId };
+            LoggingService.WriteQuizEndLog(body);
         }
     }
 }
