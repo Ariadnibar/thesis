@@ -518,6 +518,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1057965452871807370, guid: 2bde84cd6bf3442a6a58b7828b205b19,
         type: 3}
+      propertyPath: slideshowId
+      value: slideshow-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057965452871807370, guid: 2bde84cd6bf3442a6a58b7828b205b19,
+        type: 3}
       propertyPath: images.Array.size
       value: 2
       objectReference: {fileID: 0}

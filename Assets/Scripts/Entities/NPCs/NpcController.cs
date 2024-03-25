@@ -26,9 +26,7 @@ namespace Entities.NPCs
         private void Awake()
         {
             if (!string.IsNullOrEmpty(npcId)) return;
-            
             Debug.LogError("NPC ID is not set for " + name);
-            
             Destroy(gameObject);
         }
 

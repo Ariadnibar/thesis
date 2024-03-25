@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using Web;
 
 namespace Gameplay.Slideshow
 {
     public class SlideshowController : MonoBehaviour, Interfaces.IInteractiveLeftRight
     {
         [Header("Configuration")]
+        [SerializeField] private string slideshowId;
+        [Space(10)]
         [SerializeField] private Image image;
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
         [Space(10)]
@@ -16,6 +19,10 @@ namespace Gameplay.Slideshow
         
         private void Awake()
         {
+            if (!string.IsNullOrEmpty(slideshowId)) return;
+            Debug.LogError("Slideshow ID is not set for " + name);
+            Destroy(gameObject);
+            
             image.sprite = images[_currentImageIndex];
         }
         
@@ -26,6 +33,8 @@ namespace Gameplay.Slideshow
             _currentImageIndex--;
             
             image.sprite = images[_currentImageIndex];
+            
+            LogSlideSeen();
         }
         
         public void InteractRight()
@@ -35,6 +44,8 @@ namespace Gameplay.Slideshow
             _currentImageIndex++;
             
             image.sprite = images[_currentImageIndex];
+
+            LogSlideSeen();
         }
         
         private void OnTriggerEnter(Collider other)
@@ -47,6 +58,14 @@ namespace Gameplay.Slideshow
             playerController.InteractiveLeftRight = this;
             
             virtualCamera.gameObject.SetActive(true);
+            
+            // Log to database
+            var body = new WriteSlideshowSeenSlideLogRequestBody
+            {
+                slideshowId = slideshowId,
+                slideNumber = _currentImageIndex
+            };
+            LoggingService.WriteSlideshowStartLog(body);
         }
         
         private void OnTriggerExit(Collider other)
@@ -59,6 +78,20 @@ namespace Gameplay.Slideshow
             playerController.InteractiveLeftRight = null;
             
             virtualCamera.gameObject.SetActive(false);
+            
+            // Log to database
+            var body = new WriteSlideshowLogRequestBody { slideshowId = slideshowId };
+            LoggingService.WriteSlideshowEndLog(body);
+        }
+
+        private void LogSlideSeen()
+        {
+            var body = new WriteSlideshowSeenSlideLogRequestBody
+            {
+                slideshowId = slideshowId,
+                slideNumber = _currentImageIndex
+            };
+            LoggingService.WriteSlideshowSlideSeenLog(body);
         }
     }
 }
