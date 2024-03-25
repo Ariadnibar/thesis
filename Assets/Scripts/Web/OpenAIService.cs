@@ -4,6 +4,7 @@ namespace Web
 {
     public struct SendMessageRequestBody
     {
+        public string npcId { get; set; }
         public string content { get; set; }
         public string context { get; set; }
     }

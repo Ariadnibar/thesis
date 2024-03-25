@@ -9,6 +9,7 @@ namespace Entities.NPCs
     public class NpcController : MonoBehaviour
     {
         [Header("Configuration")]
+        [SerializeField] private string npcId;
         [SerializeField] [TextArea(3, 10)] private string prompt =
             "Act as a random stranger in a chat room and reply to the questions. Don't break character. Don't ever mention that you are an AI model.";
         
@@ -21,6 +22,15 @@ namespace Entities.NPCs
         
         private bool _firstMessage = true;
         private float _height;
+
+        private void Awake()
+        {
+            if (!string.IsNullOrEmpty(npcId)) return;
+            
+            Debug.LogError("NPC ID is not set for " + name);
+            
+            Destroy(gameObject);
+        }
 
         private async void OnMessageSend()
         {
@@ -35,6 +45,7 @@ namespace Entities.NPCs
             {
                 body = new SendMessageRequestBody
                 {
+                    npcId = npcId,
                     context = prompt,
                     content = message
                 };
@@ -43,6 +54,7 @@ namespace Entities.NPCs
             {
                 body = new SendMessageRequestBody
                 {
+                    npcId = npcId,
                     content = message
                 };
             }
@@ -66,6 +78,9 @@ namespace Entities.NPCs
         private void OnLeaveChat()
         {
             chatPanel.SetActive(false);
+            
+            var body = new WriteNpcLogRequestBody { npcId = npcId };
+            LoggingService.WriteNpcEndInteractionLog(body);
         }
         
         private void AppendMessage(string message, bool userMessage)
@@ -95,6 +110,10 @@ namespace Entities.NPCs
             
             // Focus the input field
             messageInput.Select();
+            
+            // Write the log
+            var body = new WriteNpcLogRequestBody { npcId = npcId };
+            LoggingService.WriteNpcStartInteractionLog(body);
         }
     }
 }
