@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7566653008801332878
+--- !u!1001 &5788320784346033687
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -61,15 +61,70 @@ PrefabInstance:
     - target: {fileID: 2358208563185475593, guid: 622bb6a8d95a7497989f071d21587d55,
         type: 3}
       propertyPath: m_Name
-      value: NPC2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7957149677300426525, guid: 622bb6a8d95a7497989f071d21587d55,
-        type: 3}
-      propertyPath: npcId
-      value: npc-2
+      value: NPCBaseAnimatedFeminineAI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2358208563185475593, guid: 622bb6a8d95a7497989f071d21587d55,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9169964722391795345}
   m_SourcePrefab: {fileID: 100100000, guid: 622bb6a8d95a7497989f071d21587d55, type: 3}
+--- !u!114 &4836045687154502178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1389689221581882421, guid: 622bb6a8d95a7497989f071d21587d55,
+    type: 3}
+  m_PrefabInstance: {fileID: 5788320784346033687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8137500006614617630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2358208563185475593, guid: 622bb6a8d95a7497989f071d21587d55,
+    type: 3}
+  m_PrefabInstance: {fileID: 5788320784346033687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9169964722391795345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137500006614617630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5249c96b581204ea2b8ed602146d456c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcId: 
+  chatPanel: {fileID: 8965631882298440532}
+  scroll: {fileID: 4836045687154502178}
+  messageSentPrefab: {fileID: 7233125166137846039, guid: a764587438e3c4ef5a139a77ec31d988,
+    type: 3}
+  messageReceivedPrefab: {fileID: 5525718364428547713, guid: 76d16867b62cd48d688329e3fc1992ad,
+    type: 3}
+  messageInput: {fileID: 9048227027740625700}
+--- !u!1 &8965631882298440532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3186417287769101635, guid: 622bb6a8d95a7497989f071d21587d55,
+    type: 3}
+  m_PrefabInstance: {fileID: 5788320784346033687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9048227027740625700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3298321162255541555, guid: 622bb6a8d95a7497989f071d21587d55,
+    type: 3}
+  m_PrefabInstance: {fileID: 5788320784346033687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

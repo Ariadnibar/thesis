@@ -32,15 +32,28 @@ namespace Entities.NPCs
         private async void Start()
         {
             var res = await NpcsService.GetAiNpc(npcId);
-            
-            _isValid = res.Success;
 
             if (!res.Success)
+            {
+                _isValid = false;
+                
                 Debug.LogError(res.StatusCode switch
                 {
                     HttpStatusCode.NotFound => "NPC not found",
                     _ => res.Message
                 });
+
+                return;
+            }
+
+            if (res.Data.type != "ai")
+            {
+                Debug.LogError("NPC is not an AI NPC");
+                
+                _isValid = false;
+            }
+            
+            _isValid = true;
         }
 
         private async void OnMessageSend()

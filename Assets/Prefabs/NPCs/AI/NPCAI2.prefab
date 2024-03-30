@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1841498225769027097
+--- !u!1001 &7014729693310214349
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,68 +8,63 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1870446029633688258, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4180070725657425446, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+    - target: {fileID: 8137500006614617630, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_Name
-      value: NPC1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8418893898339758386, guid: 985bc50feb5b0401fb7df1b5dcae8643,
-        type: 3}
-      propertyPath: npcId
-      value: npc-1
+      value: NPCBaseAnimatedFeminineAI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 985bc50feb5b0401fb7df1b5dcae8643, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: c92bec78ffae54e1fa29843341bac684, type: 3}

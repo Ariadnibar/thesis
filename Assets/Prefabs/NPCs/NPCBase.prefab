@@ -417,7 +417,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5675276593159386829}
   - component: {fileID: 2445547949459239404}
-  - component: {fileID: 5120762095729955719}
   m_Layer: 7
   m_Name: NPCBase
   m_TagString: Untagged
@@ -462,26 +461,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &5120762095729955719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7869214699153281577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5249c96b581204ea2b8ed602146d456c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcId: 
-  chatPanel: {fileID: 7041226863955421027}
-  scroll: {fileID: 6829200693672801813}
-  messageSentPrefab: {fileID: 7233125166137846039, guid: a764587438e3c4ef5a139a77ec31d988,
-    type: 3}
-  messageReceivedPrefab: {fileID: 5525718364428547713, guid: 76d16867b62cd48d688329e3fc1992ad,
-    type: 3}
-  messageInput: {fileID: 6938611879531058963}
 --- !u!1001 &1906152060807897012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -646,15 +625,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1906152060807897012}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6938611879531058963 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8808730322479106215, guid: 7924e79a1707d48de8d8bde722122cae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1906152060807897012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
