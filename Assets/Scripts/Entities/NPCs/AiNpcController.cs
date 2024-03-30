@@ -1,3 +1,4 @@
+using System.Net;
 using Entities.Player;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,12 +7,10 @@ using Web;
 namespace Entities.NPCs
 {
     [RequireComponent(typeof(Collider))]
-    public class NpcController : MonoBehaviour
+    public class AiNpcController : MonoBehaviour
     {
         [Header("Configuration")]
         [SerializeField] private string npcId;
-        [SerializeField] [TextArea(3, 10)] private string prompt =
-            "Act as a random stranger in a chat room and reply to the questions. Don't break character. Don't ever mention that you are an AI model.";
         
         [Header("References")]
         [SerializeField] private GameObject chatPanel;
@@ -20,8 +19,8 @@ namespace Entities.NPCs
         [SerializeField] private RectTransform messageReceivedPrefab;
         [SerializeField] private TMPro.TMP_InputField messageInput;
         
-        private bool _firstMessage = true;
         private float _height;
+        private bool _isValid;
 
         private void Awake()
         {
@@ -30,34 +29,36 @@ namespace Entities.NPCs
             Destroy(gameObject);
         }
 
+        private async void Start()
+        {
+            var res = await NpcsService.GetAiNpc(npcId);
+            
+            _isValid = res.Success;
+
+            if (!res.Success)
+                Debug.LogError(res.StatusCode switch
+                {
+                    HttpStatusCode.NotFound => "NPC not found",
+                    _ => res.Message
+                });
+        }
+
         private async void OnMessageSend()
         {
+            if (!_isValid) return;
+            
             var message = messageInput.text;
             
             messageInput.text = "";
             AppendMessage(message, true);
-            
-            SendMessageRequestBody body;
 
-            if (_firstMessage)
+            var body = new AiSendMessageRequestBody
             {
-                body = new SendMessageRequestBody
-                {
-                    npcId = npcId,
-                    context = prompt,
-                    content = message
-                };
-            }
-            else
-            {
-                body = new SendMessageRequestBody
-                {
-                    npcId = npcId,
-                    content = message
-                };
-            }
+                npcId = npcId,
+                content = message
+            };
 
-            var res = await OpenAIService.SendMessage(body);
+            var res = await NpcsService.AiSendMessage(body);
 
             if (!res.Success)
             {
@@ -67,8 +68,6 @@ namespace Entities.NPCs
                 
                 return;
             }
-            
-            if (_firstMessage) _firstMessage = false;
             
             AppendMessage(res.Data.message, false);
         }
@@ -96,7 +95,7 @@ namespace Entities.NPCs
         
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Player")) return;
+            if (!_isValid || !other.CompareTag("Player")) return;
             
             var playerController = other.GetComponent<PlayerController>();
             if (!playerController || !playerController.IsOwner) return;
