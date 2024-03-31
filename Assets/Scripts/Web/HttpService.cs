@@ -97,7 +97,9 @@ namespace Web
 
             try
             {
-                data = await ExtractContent<T>(response.Content); 
+                data = response.StatusCode != HttpStatusCode.NoContent
+                    ? await ExtractContent<T>(response.Content)
+                    : default;
             }
             catch (JsonException)
             {

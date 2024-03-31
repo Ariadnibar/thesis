@@ -8,6 +8,8 @@ namespace Web
         public string id;
         public string action;
         public string content;
+        
+        [JsonProperty(Required = Required.AllowNull)]
         public string nextDialogueId;
     }
     
@@ -59,6 +61,11 @@ namespace Web
         {
             return await HttpService.Post<AiSendMessageResponse, AiSendMessageRequestBody>("npcs/ai/send-message",
                 body);
+        }
+
+        public static async Task<HttpServiceResponse<NpcDialogue>> SelectNormalNpcDialogueOption(string optionId)
+        {
+            return await HttpService.Get<NpcDialogue>($"npcs/normal/select-option/{optionId}");
         }
     }
 }

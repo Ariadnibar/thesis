@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCBaseAnimatedFeminineAI
       objectReference: {fileID: 0}
+    - target: {fileID: 3186417287769101635, guid: 622bb6a8d95a7497989f071d21587d55,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
