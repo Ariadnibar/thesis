@@ -13,23 +13,20 @@ export class LoggingController {
 
   @UseGuards(JwtAuthGuard)
   @Post('/write/npc-start-interaction')
-  public async writeNpcStartInteractionLog(
-    @CurrentUser() { session, user }: ICurrentUser,
-    @Body() { npcId }: LogNpcDto,
-  ) {
+  public async writeNpcStartInteractionLog(@CurrentUser() { session }: ICurrentUser, @Body() { npcId }: LogNpcDto) {
     await this.loggingService.log(session, {
       type: ActionLog.NPC_START_INTERACTION,
-      message: `User "${user.username}" started interacting with NPC "${npcId}"`,
+      message: `User started interacting with NPC`,
       npcId,
     });
   }
 
   @UseGuards(JwtAuthGuard)
   @Post('/write/npc-end-interaction')
-  public async writeNpcEndInteractionLog(@CurrentUser() { session, user }: ICurrentUser, @Body() { npcId }: LogNpcDto) {
+  public async writeNpcEndInteractionLog(@CurrentUser() { session }: ICurrentUser, @Body() { npcId }: LogNpcDto) {
     await this.loggingService.log(session, {
       type: ActionLog.NPC_END_INTERACTION,
-      message: `User "${user.username}" stopped interacting with NPC "${npcId}"`,
+      message: `User stopped interacting with NPC`,
       npcId,
     });
   }

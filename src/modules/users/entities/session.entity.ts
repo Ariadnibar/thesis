@@ -6,10 +6,8 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-  OneToMany,
 } from 'typeorm';
 import { User } from '~/modules/users/entities/user.entity';
-import { Message } from '~/modules/openai/entities/message.entity';
 
 @Entity({ name: 'sessions' })
 export class Session {
@@ -28,7 +26,4 @@ export class Session {
 
   @UpdateDateColumn({ type: 'timestamptz', name: 'updated_at' })
   updatedAt: Date;
-
-  @OneToMany(() => Message, (message) => message.session)
-  messages: Message[];
 }

@@ -7,6 +7,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { MessageType } from '~/core/enums/message-type.enum';
+import { Npc } from '~/modules/npcs/entities/npc.entity';
 import { Session } from '~/modules/users/entities/session.entity';
 
 @Entity({ name: 'messages' })
@@ -14,8 +16,8 @@ export class Message {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  role: 'system' | 'user' | 'assistant';
+  @Column({ type: 'enum', enum: MessageType })
+  type: MessageType;
 
   @Column()
   content: string;
@@ -26,6 +28,13 @@ export class Message {
   @ManyToOne(() => Session, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: 'session_id' })
   session: Session;
+
+  @Column({ name: 'npc_id', nullable: true })
+  npcId?: string;
+
+  @ManyToOne(() => Npc, { onDelete: 'SET NULL', onUpdate: 'CASCADE' })
+  @JoinColumn({ name: 'npc_id' })
+  npc?: Npc;
 
   @CreateDateColumn({ type: 'timestamptz', name: 'created_at' })
   createdAt: Date;

@@ -11,6 +11,7 @@ interface LogParams {
 
   npcId?: string;
   messageId?: string;
+  npcDialogueOptionId?: string;
 
   slideshowId?: string;
   slideNumber?: number;

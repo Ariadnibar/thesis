@@ -8,6 +8,7 @@ import { UsersModule } from '~/modules/users/users.module';
 import { AuthModule } from '~/modules/auth/auth.module';
 import { QuizzesModule } from '~/modules/quizzes/quizzes.module';
 import { OpenAiModule } from '~/modules/openai/openai.module';
+import { NpcsModule } from '~/modules/npcs/npcs.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { OpenAiModule } from '~/modules/openai/openai.module';
     AuthModule,
     QuizzesModule,
     OpenAiModule,
+    NpcsModule,
   ],
 })
 export class AppModule {}
