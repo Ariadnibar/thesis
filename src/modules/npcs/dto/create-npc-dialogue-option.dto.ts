@@ -1,4 +1,4 @@
-import { IsEnum, IsNotEmpty, IsString, MinLength, ValidateIf, ValidateNested } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString, MinLength, ValidateIf, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
 import { CreateNpcDialogueDto } from '~/modules/npcs/dto/create-npc-dialogue.dto';
@@ -14,9 +14,18 @@ export class CreateNpcDialogueOptionDto {
   @IsEnum(NpcDialogueOptionAction)
   action: NpcDialogueOptionAction;
 
+  @IsOptional()
+  @IsString()
+  parentDialogueId?: string;
+
   @IsNotEmpty()
   @ValidateNested()
   @Type(() => CreateNpcDialogueDto)
-  @ValidateIf((o) => o.action === NpcDialogueOptionAction.NEXT)
-  nextDialogue: CreateNpcDialogueDto;
+  @ValidateIf((o) => o.action === NpcDialogueOptionAction.NEXT && !o.nextDialogueId)
+  nextDialogue?: CreateNpcDialogueDto;
+
+  @IsNotEmpty()
+  @IsString()
+  @ValidateIf((o) => o.action === NpcDialogueOptionAction.NEXT && !o.nextDialogue)
+  nextDialogueId?: string;
 }

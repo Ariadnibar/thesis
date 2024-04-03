@@ -12,6 +12,8 @@ import { MessageType } from '~/core/enums/message-type.enum';
 import { OpenAiService } from '~/modules/openai/openai.service';
 import { LoggingService } from '~/modules/logging/logging.service';
 import { ActionLog } from '~/core/enums/action-log.enum';
+import { CreateNpcDialogueOptionDto } from './dto/create-npc-dialogue-option.dto';
+import { CreateOptionsDto } from './dto/create-options.dto';
 
 @Injectable()
 export class NpcsService {
@@ -120,6 +122,32 @@ export class NpcsService {
     }
   }
 
+  public async createOptions({ options }: CreateOptionsDto): Promise<NpcDialogueOption[] | undefined> {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      const createdOptions = await Promise.all(
+        options.map(async (option) => {
+          const createdOption = await this.createOption(queryRunner.manager, option);
+
+          return createdOption;
+        }),
+      );
+
+      await queryRunner.commitTransaction();
+
+      return createdOptions;
+    } catch (e) {
+      await queryRunner.rollbackTransaction();
+
+      return undefined;
+    } finally {
+      await queryRunner.release();
+    }
+  }
+
   public async sendAiMessage(sessionId: string, npc: Npc, content: string): Promise<string | undefined> {
     const aiMessages = await this.getAiMessages(sessionId, npc, content);
 
@@ -154,18 +182,31 @@ export class NpcsService {
 
     const savedDialogue = await entityManager.save(createdDialogue);
 
-    for (const { action, content, nextDialogue } of dialogue.options) {
+    dialogue.options?.forEach(async ({ action, content, nextDialogue, nextDialogueId }) => {
       const createdOption = entityManager.create(NpcDialogueOption, {
         action,
         content,
         parentDialogueId: savedDialogue.id,
+        nextDialogueId,
         nextDialogue: nextDialogue && (await this.createDialogue(entityManager, nextDialogue)),
       });
 
       await entityManager.save(createdOption);
-    }
+    });
 
     return savedDialogue;
+  }
+
+  private async createOption(entityManager: EntityManager, option: CreateNpcDialogueOptionDto) {
+    const createdOption = entityManager.create(NpcDialogueOption, {
+      action: option.action,
+      content: option.content,
+      parentDialogueId: option.parentDialogueId,
+      nextDialogueId: option.nextDialogueId,
+      nextDialogue: option.nextDialogue && (await this.createDialogue(entityManager, option.nextDialogue)),
+    });
+
+    return await entityManager.save(createdOption);
   }
 
   private async getAiMessages(sessionId: string, npc: Npc, content: string) {

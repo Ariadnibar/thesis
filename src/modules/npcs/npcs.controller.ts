@@ -10,6 +10,7 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
+import { Response } from 'express';
 
 import { NpcsService } from '~/modules/npcs/npcs.service';
 import { JwtAuthGuard } from '~/core/guards/jwt-auth-guard.decorator';
@@ -21,7 +22,7 @@ import { AiSendMessageDto } from '~/modules/npcs/dto/ai-send-message.dto';
 import { CurrentUser } from '~/core/decorators/current-user.decorator';
 import { ICurrentUser } from '~/core/types/current-user.type';
 import { NpcDialogueOptionAction } from '~/core/enums/npc-dialogue-option-action';
-import { Response } from 'express';
+import { CreateOptionsDto } from './dto/create-options.dto';
 
 @Controller('/npcs')
 export class NpcsController {
@@ -54,6 +55,19 @@ export class NpcsController {
 
     if (!res) {
       throw new InternalServerErrorException('Failed to create NPC.');
+    }
+
+    return res;
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.ADMIN)
+  @Post('/options')
+  public async createOptions(@Body() body: CreateOptionsDto) {
+    const res = await this.npcsService.createOptions(body);
+
+    if (!res) {
+      throw new InternalServerErrorException('Failed to create options.');
     }
 
     return res;

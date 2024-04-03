@@ -1,4 +1,4 @@
-import { ArrayNotEmpty, IsArray, IsNotEmpty, IsString, MinLength, ValidateNested } from 'class-validator';
+import { ArrayNotEmpty, IsArray, IsNotEmpty, IsOptional, IsString, MinLength, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
 import { CreateNpcDialogueOptionDto } from '~/modules/npcs/dto/create-npc-dialogue-option.dto';
@@ -9,10 +9,10 @@ export class CreateNpcDialogueDto {
   @MinLength(3)
   content: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsArray()
   @ArrayNotEmpty()
   @ValidateNested()
   @Type(() => CreateNpcDialogueOptionDto)
-  options: CreateNpcDialogueOptionDto[];
+  options?: CreateNpcDialogueOptionDto[];
 }
