@@ -30,6 +30,12 @@ namespace Web
         public int points;
     }
     
+    public struct GetHighScoresSuccessResponse
+    {
+        public string username;
+        public int session_points;
+    }
+    
     public static class QuizzesService
     {
         public static async Task<HttpServiceResponse<GetQuizSuccessResponse>> GetQuiz(string id)
@@ -40,6 +46,11 @@ namespace Web
         public static async void AnswerQuestion(AnswerQuestionRequestBody body)
         {
             await HttpService.Post<object, AnswerQuestionRequestBody>($"quizzes/answer-question", body);
+        }
+
+        public static async Task<HttpServiceResponse<GetHighScoresSuccessResponse[]>> GetHighScores(int limit)
+        {
+            return await HttpService.Get<GetHighScoresSuccessResponse[]>($"quizzes/high-scores?limit={limit}");
         }
     }
 }
