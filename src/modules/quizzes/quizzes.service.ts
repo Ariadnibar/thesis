@@ -108,4 +108,18 @@ export class QuizzesService {
       return undefined;
     }
   }
+
+  public async getHighScores(limit = 1) {
+    const query = this.sessionAnswersRepository
+      .createQueryBuilder('session_answers')
+      .select('username')
+      .addSelect('sum(points)', 'session_points')
+      .leftJoin('sessions', 'sessions', 'session_answers.session_id = sessions.id')
+      .leftJoin('users', 'users', 'sessions.user_id = users.id')
+      .groupBy('session_id, username')
+      .orderBy('session_points', 'DESC')
+      .limit(limit);
+
+    return (await query.getRawMany()) as { username: string; session_points: number }[];
+  }
 }

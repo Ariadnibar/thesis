@@ -10,6 +10,7 @@ import {
   UseGuards,
   Param,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 
 import { QuizzesService } from '~/modules/quizzes/quizzes.service';
@@ -36,6 +37,18 @@ export class QuizzesController {
   @Get()
   public async findAllQuizzes() {
     return await this.quizzesService.findAllQuizzes();
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/high-scores')
+  public async getHighScores(@Query('limit') limit: string) {
+    const parsedLimit = parseInt(limit, 10);
+
+    if (isNaN(parsedLimit)) {
+      throw new BadRequestException('Invalid limit');
+    }
+
+    return await this.quizzesService.getHighScores(parsedLimit);
   }
 
   @UseGuards(JwtAuthGuard)
