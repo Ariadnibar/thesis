@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Singleton { get; private set; }
     
     private int _score;
+    private int _maxScore;
     
     private void OnEnable()
     {
@@ -35,10 +36,12 @@ public class GameManager : MonoBehaviour
         GetHighScore();
     }
     
-    public void AddScore(int score)
+    public void AddScore(int points, int maxPoints)
     {
-        _score += score;
-        scoreText.text = $"Current score:\n  {_score} points";
+        _score += points;
+        _maxScore += maxPoints;
+        
+        scoreText.text = $"Current score:\n  {_score}/{_maxScore} pts";
     }
 
     // Called per joined client
@@ -66,6 +69,6 @@ public class GameManager : MonoBehaviour
         }
 
         if (res.Data.Length > 0)
-            highScoreText.text = $"High Score:\n  {res.Data[0].username}\n  {res.Data[0].session_points} points";
+            highScoreText.text = $"High Score:\n  {res.Data[0].username}\n  {res.Data[0].session_points} pts";
     }
 }

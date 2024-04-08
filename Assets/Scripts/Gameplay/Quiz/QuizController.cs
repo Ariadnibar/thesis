@@ -124,7 +124,7 @@ namespace Gameplay.Quiz
             _score += points;
             
             // Update text
-            GameManager.Singleton.AddScore(points);
+            GameManager.Singleton.AddScore(points, config.SuccessfulAnswerPoints);
 
             var body = new AnswerQuestionRequestBody { answerId = answer.id, points = points };
             QuizzesService.AnswerQuestion(body);
