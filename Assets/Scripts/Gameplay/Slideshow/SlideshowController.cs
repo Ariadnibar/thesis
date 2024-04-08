@@ -19,10 +19,14 @@ namespace Gameplay.Slideshow
         
         private void Awake()
         {
-            if (!string.IsNullOrEmpty(slideshowId)) return;
-            Debug.LogError("Slideshow ID is not set for " + name);
-            Destroy(gameObject);
-            
+            if (string.IsNullOrEmpty(slideshowId))
+            {
+                Debug.LogError("Slideshow ID is not set for " + name);
+                Destroy(gameObject);
+                
+                return;
+            }
+
             image.sprite = images[_currentImageIndex];
         }
         
