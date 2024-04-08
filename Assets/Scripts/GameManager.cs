@@ -10,8 +10,11 @@ public class GameManager : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private TMPro.TMP_Text highScoreText;
+    [SerializeField] private TMPro.TMP_Text scoreText;
 
     public static GameManager Singleton { get; private set; }
+    
+    private int _score;
     
     private void OnEnable()
     {
@@ -30,6 +33,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GetHighScore();
+    }
+    
+    public void AddScore(int score)
+    {
+        _score += score;
+        scoreText.text = $"Current score:\n  {_score} points";
     }
 
     // Called per joined client

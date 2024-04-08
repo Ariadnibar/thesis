@@ -122,6 +122,9 @@ namespace Gameplay.Quiz
             var points = answer.isCorrect ? config.SuccessfulAnswerPoints : config.WrongAnswerPoints;
 
             _score += points;
+            
+            // Update text
+            GameManager.Singleton.AddScore(points);
 
             var body = new AnswerQuestionRequestBody { answerId = answer.id, points = points };
             QuizzesService.AnswerQuestion(body);
