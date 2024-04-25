@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] playerPrefabs;
     
     [Header("References")]
-    [SerializeField] private TMPro.TMP_Text highScoreText;
     [SerializeField] private TMPro.TMP_Text scoreText;
 
     public static GameManager Singleton { get; private set; }
+    
+    private string _highScoreUsername;
+    private int _highScore;
     
     private int _score;
     private int _maxScore;
@@ -41,14 +43,12 @@ public class GameManager : MonoBehaviour
         _score += points;
         _maxScore += maxPoints;
         
-        scoreText.text = $"Current score:\n  {_score}/{_maxScore} pts";
+        SetScore();
     }
 
     // Called per joined client
     private void OnSceneLoaded(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        Debug.Log($"Client {clientId} loaded scene {sceneName}");
-        
         if (!NetworkManager.Singleton.IsServer) return;
         
         var playerPrefab = playerPrefabs[NetworkManager.Singleton.ConnectedClients.Count - 1];
@@ -67,8 +67,29 @@ public class GameManager : MonoBehaviour
             
             return;
         }
+        
+        if (res.Data.Length <= 0) return;
+        
+        _highScoreUsername = res.Data[0].username;
+        _highScore = res.Data[0].session_points;
+        
+        SetScore();
+    }
 
-        if (res.Data.Length > 0)
-            highScoreText.text = $"High Score:\n  {res.Data[0].username}\n  {res.Data[0].session_points} pts";
+    private void SetScore()
+    {
+        var scoreString = "";
+
+        scoreString += "<i>High Score</i>\n";
+        scoreString += $"<b>{_highScoreUsername}\n{_highScore} pts</b>";
+
+        if (_score > 0)
+        {
+            scoreString += "\n\n";
+            scoreString += "<i>Current Score</i>\n";
+            scoreString += $"<b>{_score}/{_maxScore} pts</b>";
+        }
+        
+        scoreText.text = scoreString;
     }
 }
