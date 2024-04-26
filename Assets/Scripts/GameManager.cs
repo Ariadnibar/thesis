@@ -83,12 +83,9 @@ public class GameManager : MonoBehaviour
         scoreString += "<i>High Score</i>\n";
         scoreString += $"<b>{_highScoreUsername}\n{_highScore} pts</b>";
 
-        if (_score > 0)
-        {
-            scoreString += "\n\n";
-            scoreString += "<i>Current Score</i>\n";
-            scoreString += $"<b>{_score}/{_maxScore} pts</b>";
-        }
+        scoreString += "\n\n";
+        scoreString += "<i>Current Score</i>\n";
+        scoreString += $"<b>{_score}/{_maxScore} pts</b>";
         
         scoreText.text = scoreString;
     }
