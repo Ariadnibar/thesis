@@ -63,6 +63,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCBaseAnimatedMasculineAI
       objectReference: {fileID: 0}
+    - target: {fileID: 8287370088779468205, guid: 985bc50feb5b0401fb7df1b5dcae8643,
+        type: 3}
+      propertyPath: m_text
+      value: "\u03A3\u03C5\u03BC\u03C0\u03AE\u03C1\u03C9\u03C3\u03B5 \u03C4\u03B7\u03BD
+        \u03B5\u03C1\u03CE\u03C4\u03B7\u03C3\u03AE \u03C3\u03BF\u03C5... "
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
