@@ -22,6 +22,9 @@ export class NpcDialogueOption {
   @Column({ type: 'enum', enum: NpcDialogueOptionAction })
   action: NpcDialogueOptionAction;
 
+  @Column({ type: 'int', default: 0 })
+  order: number;
+
   @Column({ name: 'parent_dialogue_id' })
   parentDialogueId: string;
 

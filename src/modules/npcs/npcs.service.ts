@@ -63,7 +63,15 @@ export class NpcsService {
               id: true,
               action: true,
               content: true,
+              order: true,
               nextDialogueId: true,
+            },
+          },
+        },
+        order: {
+          dialogue: {
+            options: {
+              order: 'ASC',
             },
           },
         },
@@ -84,6 +92,13 @@ export class NpcsService {
         relations: {
           nextDialogue: {
             options: true,
+          },
+        },
+        order: {
+          nextDialogue: {
+            options: {
+              order: 'ASC',
+            },
           },
         },
       });
