@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6531ff67849fa45acb175eef031ea8be, type: 3}
   m_Name: QuizConfiguration
   m_EditorClassIdentifier: 
-  successWaitTime: 3
-  quizCompleteMessage: Quiz complete!
+  quizNextQuestionWaitTime: 1
+  quizCompleteWaitTime: 3
+  quizCompleteSuccessMessage: Congratulations!
+  quizCompleteFailureMessage: Better luck next time!
   successThreshold: 0.5
   successfulAnswerPoints: 10
   wrongAnswerPoints: -5

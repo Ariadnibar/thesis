@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2524417791474226843, guid: c92bec78ffae54e1fa29843341bac684,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5987964278622792442, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 8137500006614617630, guid: c92bec78ffae54e1fa29843341bac684,
         type: 3}
       propertyPath: m_Name
-      value: NPCBaseAnimatedFeminineAI
+      value: NPCAI2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

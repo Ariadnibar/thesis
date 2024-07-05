@@ -8,10 +8,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 586547896955579795, guid: 60a1b06b5dcbe49ac8e46995a58dbbfa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6612809873056183574, guid: 60a1b06b5dcbe49ac8e46995a58dbbfa,
         type: 3}
       propertyPath: m_Name
-      value: NPCBaseAnimatedMasculineAI
+      value: NPCAI1
       objectReference: {fileID: 0}
     - target: {fileID: 8661226266529059314, guid: 60a1b06b5dcbe49ac8e46995a58dbbfa,
         type: 3}

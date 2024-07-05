@@ -49,6 +49,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingFR (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3230194702250432126, guid: fda3266de70796f49926a452d546db35,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566731162323932208, guid: fda3266de70796f49926a452d546db35,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527972583522613430, guid: fda3266de70796f49926a452d546db35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8720746094473421843, guid: fda3266de70796f49926a452d546db35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122,6 +137,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuildingFB
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527972583522613430, guid: eefa14286a86d4749b9224444066e234,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8720746094473421843, guid: eefa14286a86d4749b9224444066e234,
         type: 3}
@@ -197,6 +217,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingFB (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7527972583522613430, guid: eefa14286a86d4749b9224444066e234,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8720746094473421843, guid: eefa14286a86d4749b9224444066e234,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -271,6 +296,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingFR
       objectReference: {fileID: 0}
+    - target: {fileID: 3230194702250432126, guid: fda3266de70796f49926a452d546db35,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566731162323932208, guid: fda3266de70796f49926a452d546db35,
+        type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527972583522613430, guid: fda3266de70796f49926a452d546db35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8720746094473421843, guid: fda3266de70796f49926a452d546db35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -344,6 +384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuildingFB (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527972583522613430, guid: eefa14286a86d4749b9224444066e234,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8720746094473421843, guid: eefa14286a86d4749b9224444066e234,
         type: 3}
