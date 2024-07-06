@@ -2,13 +2,14 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { LoggingModule } from './modules/logging/logging.module';
+import { LoggingModule } from '~/modules/logging/logging.module';
 import { EncryptionModule } from '~/modules/encryption/encryption.module';
 import { UsersModule } from '~/modules/users/users.module';
 import { AuthModule } from '~/modules/auth/auth.module';
 import { QuizzesModule } from '~/modules/quizzes/quizzes.module';
 import { OpenAiModule } from '~/modules/openai/openai.module';
 import { NpcsModule } from '~/modules/npcs/npcs.module';
+import { StatsModule } from '~/modules/stats/stats.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { NpcsModule } from '~/modules/npcs/npcs.module';
     QuizzesModule,
     OpenAiModule,
     NpcsModule,
+    StatsModule,
   ],
 })
 export class AppModule {}
