@@ -46,3 +46,29 @@ export interface ApiCreateQuizRequest {
   name: string;
   questions: ApiCreateQuestionRequest[];
 }
+
+export enum ApiLogAction {
+  NPC_AI_SENT_MESSAGE = 'npc-ai-sent-message',
+  NPC_NORMAL_SELECTED_OPTION = 'npc-normal-selected-option',
+}
+
+export interface ApiFetchNPCStatsResponse {
+  interactions: {
+    type: ApiLogAction.NPC_AI_SENT_MESSAGE | ApiLogAction.NPC_NORMAL_SELECTED_OPTION;
+    interactions: number;
+    users: number;
+  }[];
+}
+
+export type ApiFetchQuizStatsResponse = {
+  name: string;
+  avg_points: number;
+}[];
+
+export type ApiFetchNPCDialogueOptionsStatsResponse = {
+  npc: string;
+  dialogueOptions: {
+    content: string;
+    clicks: number;
+  }[];
+}[];

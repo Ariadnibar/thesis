@@ -72,7 +72,7 @@ const QuizForm = () => {
   };
 
   return (
-    <main className='p flex flex-col'>
+    <main className='flex flex-col'>
       <div className='sticky top-0 z-10 flex justify-between bg-base-100 py-2'>
         <h2 className='mb-5 text-2xl font-bold'>{editing ? 'Edit quiz' : 'Create quiz'}</h2>
 

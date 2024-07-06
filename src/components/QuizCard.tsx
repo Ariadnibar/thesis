@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { ApiFetchQuizResponse } from '../lib/api.types';
@@ -63,18 +63,16 @@ const QuizCard = ({ quiz }: Props) => {
           {quiz.questions
             .sort((a, b) => a.order - b.order)
             .map((question) => (
-              <>
-                <span key={question.id} className='font-medium'>
-                  - {question.content}
-                </span>
+              <Fragment key={question.id}>
+                <span className='font-medium'>- {question.content}</span>
 
                 <>
                   {question.answers
                     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
                     .map((answer) => (
-                      <>
+                      <Fragment key={answer.id}>
                         {answer.isCorrect ? (
-                          <span key={answer.id} className='flex items-center gap-1 pl-4 font-light text-success'>
+                          <span className='flex items-center gap-1 pl-4 font-light text-success'>
                             <svg
                               xmlns='http://www.w3.org/2000/svg'
                               width='24'
@@ -92,7 +90,7 @@ const QuizCard = ({ quiz }: Props) => {
                             {answer.content}
                           </span>
                         ) : (
-                          <span key={answer.id} className='flex items-center gap-1 pl-4 font-light text-error'>
+                          <span className='flex items-center gap-1 pl-4 font-light text-error'>
                             <svg
                               xmlns='http://www.w3.org/2000/svg'
                               width='24'
@@ -111,10 +109,10 @@ const QuizCard = ({ quiz }: Props) => {
                             {answer.content}
                           </span>
                         )}
-                      </>
+                      </Fragment>
                     ))}
                 </>
-              </>
+              </Fragment>
             ))}
         </div>
       </div>

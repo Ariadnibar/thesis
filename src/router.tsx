@@ -11,6 +11,7 @@ import SignInPage from './pages/SignInPage';
 import QuizListPage from './pages/QuizListPage';
 import CreateQuizPage from './pages/CreateQuizPage';
 import EditQuizPage from './pages/EditQuizPage';
+import StatisticsPage from './pages/StatisticsPage';
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: '/edit/:id',
         element: <EditQuizPage />,
+      },
+      {
+        path: '/statistics',
+        element: <StatisticsPage />,
       },
     ],
   },
